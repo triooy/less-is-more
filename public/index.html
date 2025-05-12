@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Less is More</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Less is More</h1>
+
+    <!-- Initial Screen: Create or Join Game -->
+    <div id="join-create-screen">
+        <h2>Welcome!</h2>
+        <input type="text" id="nickname-input" placeholder="Enter your nickname">
+        <button id="create-game-btn">Create New Game</button>
+        <hr>
+        <input type="text" id="game-id-input" placeholder="Enter Game ID">
+        <button id="join-game-btn">Join Game</button>
+        <p id="join-error" class="error-message"></p>
+    </div>
+
+    <!-- Lobby Screen -->
+    <div id="lobby-screen" style="display: none;">
+        <h2>Lobby</h2>
+        <p>Game ID: <span id="lobby-game-id"></span></p>
+        <p>Share this ID with your friends!</p>
+        <h3>Players:</h3>
+        <ul id="player-list">
+            <!-- Player names will be added here -->
+        </ul>
+        <button id="start-game-btn">Start Game</button> <!-- Only visible to host -->
+        <p id="lobby-message"></p>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" style="display: none;">
+        <h2>Game On!</h2>
+        <p>Category: <strong id="game-category"></strong></p>
+        <p>Your Role: <strong id="player-role"></strong></p>
+        <p>Current Turn: <strong id="current-turn"></strong></p>
+
+        <!-- Clue Input Area (for Clue Givers) -->
+        <div id="clue-input-area" style="display: none;">
+            <p id="secret-word-display">The word is: <strong id="secret-word"></strong></p>
+            <textarea id="clue-input" placeholder="Enter your clue (letters and spaces only)"></textarea>
+            <button id="submit-clue-btn">Submit Clue</button>
+            <p>Letters used: <span id="clue-length">0</span></p>
+        </div>
+
+        <!-- Guess Input Area (for Guesser) -->
+        <div id="guess-input-area" style="display: none;">
+            <p>Current Clue: <strong id="current-clue"></strong> (from <span id="clue-giver-name"></span>)</p>
+            <input type="text" id="guess-input" placeholder="Enter your guess">
+            <button id="submit-guess-btn">Submit Guess</button>
+        </div>
+
+        <!-- Waiting Message Area -->
+        <div id="waiting-area">
+            <p id="waiting-message">Waiting for other players...</p>
+        </div>
+
+        <!-- Game Info/Scores -->
+        <div id="game-info">
+            <h3>Scores:</h3>
+            <ul id="score-list">
+                <!-- Scores will be added here -->
+            </ul>
+            <p id="game-message"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
