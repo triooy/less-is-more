@@ -373,17 +373,18 @@ function setupEventListeners() {
 
     submitClueBtn.addEventListener('click', () => {
         const clueText = clueInput.value.trim();
-        // Basic validation (server should do more robust validation)
-        if (!clueText) {
-            updateGameMessage("Clue cannot be empty.");
-            return;
-        }
-        if (/[^a-zA-Z\s]/.test(clueText)) {
-             updateGameMessage("Clue can only contain letters and spaces.");
-             return;
-        }
+    // Basic validation (server should do more robust validation)
+    if (!clueText) {
+        updateGameMessage("Clue cannot be empty.");
+        return;
+    }
+    // Allow English letters, German umlauts, eszett, and spaces
+    if (/[^a-zA-Z\säöüÄÖÜß]/.test(clueText)) {
+         updateGameMessage("Clue can only contain letters, German characters (äöüß), and spaces.");
+         return;
+    }
 
-        sendMessage('submitClue', { gameId, playerId, clue: clueText });
+    sendMessage('submitClue', { gameId, playerId, clue: clueText });
         submitClueBtn.disabled = true; // Prevent double submission
         updateGameMessage("Clue submitted. Waiting for others...");
     });

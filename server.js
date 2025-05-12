@@ -447,9 +447,9 @@ wss.on('connection', (ws) => {
              case 'submitClue':
                  if (game && player && player.role === 'Clue Giver' && game.phase === 'clueGiving') {
                      const clueText = payload.clue || '';
-                     // Validate clue (basic - allow letters and spaces)
-                     if (/[^a-zA-Z\s]/.test(clueText) || !clueText) {
-                         sendToPlayer(ws, 'error', { message: 'Invalid clue. Only letters and spaces allowed.' });
+                     // Validate clue (allow English letters, German umlauts, eszett, and spaces)
+                     if (/[^a-zA-Z\säöüÄÖÜß]/.test(clueText) || !clueText) {
+                         sendToPlayer(ws, 'error', { message: 'Invalid clue. Only letters, German characters (äöüß), and spaces allowed.' });
                          return;
                      }
                      player.clue = clueText;
